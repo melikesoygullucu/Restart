@@ -12,7 +12,7 @@ struct HomeView: View {
     //MARK: - PROPERTY
     
     @AppStorage("onboarding") var isOnboardingViewActive: Bool = false
-    
+    @State private var isAnimating : Bool = false
 
     
     //MARK: - BODY
@@ -29,7 +29,9 @@ struct HomeView: View {
                 Image("character-2")
                     .resizable()
                     .scaledToFit()
-                .padding()
+                    .padding()
+                    .offset(y: isAnimating ? 35 : -35)
+                    .animation(.easeInOut(duration: 4).repeatForever(), value: isAnimating)
             }
             // MARK: - CENTER
             
